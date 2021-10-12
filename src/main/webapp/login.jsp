@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="botones">
-				<input class="btonIngresar" type="submit" name="aceptar" value="Iniciar sesión">
+				<input class="btonIngresar" type="submit" name="ingresar" value="Iniciar sesión">
 				<a href="index.jsp"><input class="btonCancelar" type="button" value="Cancelar"></a>
 			</div>
 		</form>

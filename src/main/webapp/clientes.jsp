@@ -10,15 +10,15 @@
 <body>
 <%!
 int cedula=0,id=0;
-String email="",nombre="",password="",usuario="",estado="";
+String email="",nombre="",direccion="",telefono="",estado="";
 %>
 <%
 if(request.getParameter("cedula")!=null){
 	cedula=Integer.parseInt(request.getParameter("cedula"));
 	email=request.getParameter("email");
 	nombre=request.getParameter("nombre");
-	password=request.getParameter("password");
-	usuario=request.getParameter("usuario");
+	direccion=request.getParameter("direccion");
+	telefono=request.getParameter("telefono");
 	estado="disabled";
 }
 if(request.getParameter("id")!=null){
@@ -46,40 +46,25 @@ if(request.getParameter("id")!=null){
 </header>
 
 <div id="BDUsuario">
-		<form action="Usuarios" method="post">
+		<form action="Clientes" method="post">
 			<div>
-			<h2>Datos Personales</h2>
 				<div>
 					<label class="entrada" >Cédula </label>
-				</div>
-				<div>
 					<input class="entrada" type="text" placeholder="123456" name="cedula" required="required" value="<%=cedula%>" <%=estado%>>
 					<input type="hidden"  name="ced" value="<%=cedula%>">
+					<label class="entrada" >Teléfono </label>
+					<input class="entrada" type="text" placeholder="1234567" name="telefono" required="required" value="<%=telefono%>">
+				
 				</div>
 				<div>
 					<label class="entrada">Nombre Completo </label>
-				</div>
-				<div>
 					<input class="entrada" type="text" placeholder="Juan Perez" name="nombre" required="required" value="<%=nombre%>">
-				</div>
-				<div>
 					<label class="entrada" >Correo </label>
+					<input class="entrada" type="email" placeholder="acb@ejemplo.com" name="correo" required="required" value="<%=email%>">
 				</div>
 				<div>
-					<input class="entrada" type="email" placeholder="abc@ejemplo.com" name="correo" required="required" value="<%=email%>">
-				</div>
-				<h2>Datos de Acceso</h2>
-				<div>
-					<label class="entrada" >Usuario </label>
-				</div>
-				<div>
-					<input class="entrada" type="text" placeholder="juanp" name="usuario" required="required" value="<%=usuario%>">
-				</div>
-				<div>
-					<label class="entrada" >Contraseña </label>
-				</div>
-				<div>
-					<input class="entrada" type="password" placeholder="****" name="clave" required="required" value="<%=password%>">
+					<label class="entrada" >Dirección </label>
+					<input class="entrada" type="text" placeholder="cll 12 No 12-54" name="direccion" required="required" value="<%=direccion%>">
 				</div>
 			</div>
 			<div class="botones">
@@ -90,7 +75,7 @@ if(request.getParameter("id")!=null){
 		</form>
 	</div>
 	<hr>
-<form action="Usuarios" method="post">
+<form action="Clientes" method="post">
 <fieldset>
 <legend>Consultar</legend>
 <div><label class="entrada">Cedula: </label><input class="entrada" type="text" name="id" required="required">

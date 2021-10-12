@@ -83,7 +83,7 @@ public class Usuarios extends HttpServlet {
 			UsuarioDTO usu =new UsuarioDTO(cedula,email,nombre,password,usuario);
 			if(usuDao.Actualiza_Usuario(usu)) {
 				//JOptionPane.showMessageDialog(null, "Se registro el usuario exitosamente!!");
-				response.sendRedirect("usuarios.jsp?men=“Datos del Usuario Actualizados");
+				response.sendRedirect("usuarios.jsp?men=Datos del Usuario Actualizados");
 			}else {
 				//JOptionPane.showMessageDialog(null, "No se registro el usuario!!");
 				response.sendRedirect("usuarios.jsp?men=No se actualizo el usuario!!");

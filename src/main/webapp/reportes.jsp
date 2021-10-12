@@ -4,13 +4,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/Reportes.js"></script>
 <link  rel="stylesheet" type="text/css" href="css/StylePage.css" />
 <title>Tienda Generica</title>
 </head>
 <body>
-<% //scriplets para insertar odigo java en html
-// String nombre=request.getParameter("nom");
-int id=Integer.parseInt(request.getParameter("id"));
+<% 
+int id=0;
+if(request.getParameter("id")!=null){
+	id=Integer.parseInt(request.getParameter("id"));
+}
 %>
 <header class="header">
 		<nav class="nav">
@@ -31,5 +35,14 @@ int id=Integer.parseInt(request.getParameter("id"));
 			</ul>
 		</nav>
 </header>
+
+<div><button class="btonIngresar botones" id="listaUsuarios">Listado de Usuarios</button></div>
+<div></div>
+<div><button class="btonIngresar botones" id="listaClientes">Listado de Clientes</button></div>
+<div></div>
+<div><button class="btonIngresar botones"  id="listaVentas">Ventas por Cliente</button></div>
+<table id="tabla">
+
+</table>
 </body>
 </html>

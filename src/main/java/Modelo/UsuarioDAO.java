@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -15,6 +16,39 @@ public class UsuarioDAO {
 	Connection conec=cnn.conecta();
 	PreparedStatement ps=null;
 	ResultSet res=null;
+	
+	public boolean Login(String usuario,String clave) {
+		boolean resul=false;
+		try {
+			String sql="select * from usuarios where usuario=? and password=?";
+			ps=conec.prepareStatement(sql);
+			ps.setString(1, usuario);
+			ps.setString(2, clave);
+			res=ps.executeQuery();
+			while(res.next()) {
+				resul=true;
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error al consultar"+e);
+		}
+		return resul;
+	} 
+	public int BuscarId(String usuario,String clave) {
+		int id=0;
+		try {
+			String sql="select * from usuarios where usuario=? and password=?";
+			ps=conec.prepareStatement(sql);
+			ps.setString(1, usuario);
+			ps.setString(2, clave);
+			res=ps.executeQuery();
+			while(res.next()) {
+				id = res.getInt(1);
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error al consultar"+e);
+		}
+		return id;
+	} 
 	
 	public boolean Inserta_Usuario(UsuarioDTO usu) {
 		boolean resul=false;
@@ -85,5 +119,22 @@ public class UsuarioDAO {
 			JOptionPane.showMessageDialog(null, "Error al eliminar usuario"+ex);
 		}
 		return resul;
+	}
+	
+	public ArrayList<UsuarioDTO> cargarUsuarios(){
+		UsuarioDTO usu = null;
+		ArrayList<UsuarioDTO> lista = new ArrayList<>();
+		try {
+			String sql="select * from usuarios";
+			ps=conec.prepareStatement(sql);
+			res=ps.executeQuery();
+			while(res.next()) {
+				usu=new UsuarioDTO(res.getInt(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5));
+						lista.add(usu);
+			}
+		} catch (SQLException ex) {
+			JOptionPane.showMessageDialog(null,"Error al consultar Usuarios" + ex);
+		}
+		return lista;	
 	}
 }

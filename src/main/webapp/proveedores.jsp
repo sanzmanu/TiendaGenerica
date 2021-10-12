@@ -9,16 +9,16 @@
 </head>
 <body>
 <%!
-int cedula=0,id=0;
-String email="",nombre="",password="",usuario="",estado="";
+int nit=0,id=0;
+String ciudad="",nombre="",direccion="",telefono="",estado="";
 %>
 <%
-if(request.getParameter("cedula")!=null){
-	cedula=Integer.parseInt(request.getParameter("cedula"));
-	email=request.getParameter("email");
+if(request.getParameter("nit")!=null){
+	nit=Integer.parseInt(request.getParameter("nit"));
+	ciudad=request.getParameter("ciudad");
 	nombre=request.getParameter("nombre");
-	password=request.getParameter("password");
-	usuario=request.getParameter("usuario");
+	direccion=request.getParameter("direccion");
+	telefono=request.getParameter("telefono");
 	estado="disabled";
 }
 if(request.getParameter("id")!=null){
@@ -40,60 +40,45 @@ if(request.getParameter("id")!=null){
 			     <li class="nav-menu-item">
 			     <a class="nav-menu-link nav-link" href="ventas.jsp?id=<%=id %>">Ventas</a></li>
 			     <li class="nav-menu-item">
-			     <a class="nav-menu-link nav-link" href="reportes.jsp?id=<%=id %>">Reportes</a></li>
+			     <a class="nav-menu-link nav-link" href="reportes?id=<%=id %>">Reportes</a></li>
 			</ul>
 		</nav>
 </header>
 
 <div id="BDUsuario">
-		<form action="Usuarios" method="post">
+		<form action="Proveedores" method="post">
 			<div>
-			<h2>Datos Personales</h2>
 				<div>
-					<label class="entrada" >Cédula </label>
+					<label class="entrada" >NIT </label>
+					<input class="entrada" type="text" placeholder="123456" name="nit" required="required" value="<%=nit%>" <%=estado%>>
+					<input type="hidden"  name="ced" value="<%=nit%>">
+					<label class="entrada" >Teléfono </label>
+					<input class="entrada" type="text" placeholder="1234567" name="telefono" required="required" value="<%=telefono%>">
+				
 				</div>
 				<div>
-					<input class="entrada" type="text" placeholder="123456" name="cedula" required="required" value="<%=cedula%>" <%=estado%>>
-					<input type="hidden"  name="ced" value="<%=cedula%>">
-				</div>
-				<div>
-					<label class="entrada">Nombre Completo </label>
-				</div>
-				<div>
+					<label class="entrada">Nombre Proveedor </label>
 					<input class="entrada" type="text" placeholder="Juan Perez" name="nombre" required="required" value="<%=nombre%>">
+					<label class="entrada" >Ciudad </label>
+					<input class="entrada" type="text" placeholder="Bogotá" name="ciudad" required="required" value="<%=ciudad%>">
 				</div>
 				<div>
-					<label class="entrada" >Correo </label>
-				</div>
-				<div>
-					<input class="entrada" type="email" placeholder="abc@ejemplo.com" name="correo" required="required" value="<%=email%>">
-				</div>
-				<h2>Datos de Acceso</h2>
-				<div>
-					<label class="entrada" >Usuario </label>
-				</div>
-				<div>
-					<input class="entrada" type="text" placeholder="juanp" name="usuario" required="required" value="<%=usuario%>">
-				</div>
-				<div>
-					<label class="entrada" >Contraseña </label>
-				</div>
-				<div>
-					<input class="entrada" type="password" placeholder="****" name="clave" required="required" value="<%=password%>">
+					<label class="entrada" >Dirección </label>
+					<input class="entrada" type="text" placeholder="cll 12 No 12-54" name="direccion" required="required" value="<%=direccion%>">
 				</div>
 			</div>
 			<div class="botones">
-				<input class="btonIngresar" type="submit" name="crear" value="Crear">
+				<input class="btonIngresar" type="submit" name="crear" value="Crear" >
 				<input class="btonIngresar" type="submit" name="actualizar" value="Actualizar">
 				<input class="btonIngresar" type="submit" name="borrar" value="Borrar">
 			</div>
 		</form>
 	</div>
 	<hr>
-<form action="Usuarios" method="post">
+<form action="Proveedores" method="post">
 <fieldset>
 <legend>Consultar</legend>
-<div><label class="entrada">Cedula: </label><input class="entrada" type="text" name="id" required="required">
+<div><label class="entrada">NIT: </label><input class="entrada" type="text" name="id" required="required">
 <input class="btonIngresar" type="submit" name="consultar" value="Consultar"></div>
 </fieldset>
 </form>

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
+import Modelo.UsuarioDAO;
+
 /**
  * Servlet implementation class Login
  */
@@ -27,13 +29,21 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("aceptar")!=null) {
+		UsuarioDAO usuDao = new UsuarioDAO();
+		
+		if(request.getParameter("ingresar")!=null) {
 			String usuario,password;
+			int id;
 			usuario=request.getParameter("usuario");
 			password=request.getParameter("clave");
-			if(usuario.equals("admininicial")&& password.equals("admin123456")) {
-				JOptionPane.showMessageDialog(null,"Bienvenido!! Administrador");
-				response.sendRedirect("Menu.jsp?nom="+usuario);
+			if(usuDao.Login(usuario,password)) {
+				JOptionPane.showMessageDialog(null,"Bienvenido!!");
+				id = usuDao.BuscarId(usuario, password);
+				response.sendRedirect("Menu.jsp?id="+id);
+			
+			// if(usuario.equals("admininicial")&& password.equals("admin123456")) {
+				// JOptionPane.showMessageDialog(null,"Bienvenido!! Administrador");
+				// response.sendRedirect("Menu.jsp?nom="+usuario);
 			}else {
 				JOptionPane.showMessageDialog(null,"Usuario o Contraseña errados, intente de nuevo");
 				response.sendRedirect("login.jsp");
